@@ -1,5 +1,4 @@
-// --- 1. FIREBASE CONFIGURATION ---
-// PASTE YOUR ACTUAL CONFIG FROM FIREBASE CONSOLE HERE
+
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -9,11 +8,11 @@ const firebaseConfig = {
     appId: "YOUR_APP_ID"
 };
 
-// Initialize Firebase and Firestore
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// --- 2. GLOBAL VARIABLES ---
+
 let countdownSeconds = 2 * 60; 
 let timeLeft = countdownSeconds;
 let isEmergency = false;
@@ -24,9 +23,9 @@ const statusCard = document.getElementById('status-card');
 const statusText = document.getElementById('status-text');
 const logList = document.getElementById('log-list');
 
-// --- 3. FIRESTORE SYNC LOGIC ---
 
-// Sends the emergency status to the cloud
+
+
 async function notifyFirebase(reason) {
     try {
         await db.collection("emergencies").add({
@@ -41,7 +40,7 @@ async function notifyFirebase(reason) {
     }
 }
 
-// Listens for new emergency entries (Real-time update for Caregiver)
+
 db.collection("emergencies")
     .orderBy("timestamp", "desc")
     .limit(1)
@@ -55,7 +54,7 @@ db.collection("emergencies")
         });
     });
 
-// --- 4. NAVIGATION & TIMER LOGIC ---
+
 
 function showPage(pageId) {
     document.getElementById('page-monitor').classList.toggle('hidden', pageId !== 'monitor');
@@ -94,23 +93,19 @@ function resetTimer() {
     updateDisplay();
 }
 
-// --- 5. EMERGENCY TRIGGER LOGIC ---
 
-// Triggered when user clicks "I NEED HELP"
 function triggerEmergency() {
     const msg = "Patient manually requested help.";
     notifyFirebase(msg); // Alert Cloud
     triggerEmergencyUI(msg); // Update Local UI
 }
 
-// Triggered when timer hits zero
 function triggerEmergencyByTimeout() {
     const msg = "No activity for past 2 minutes.";
     notifyFirebase(msg); // Alert Cloud
     triggerEmergencyUI(msg); // Update Local UI
 }
 
-// Handles visual and audio updates
 function triggerEmergencyUI(msg) {
     clearInterval(timerInterval);
     isEmergency = true;
@@ -137,12 +132,12 @@ function addLog(msg) {
     logList.prepend(li);
 }
 
-// --- 6. PASSIVE MONITORING ---
+
 window.addEventListener('mousemove', resetTimer);
 window.addEventListener('keydown', resetTimer);
 window.addEventListener('touchstart', resetTimer);
 
-// Initialize
+
 updateDisplay();
 startTimer();
 
