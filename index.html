@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Emergency Detector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><h2>Emergency Detector</h2></div>
+        <div class="nav-links">
+            <button onclick="showPage('monitor')">Safety Home</button>
+            <button onclick="showPage('dashboard')">Caregiver View</button>
+        </div>
+    </nav>
+
+    <main id="page-monitor" class="container">
+        <div id="status-card" class="status-card safe">
+            <h1 id="status-text">SYSTEM ACTIVE</h1>
+            <p>Next check-in required in:</p>
+            <div id="timer">02:00</div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-ok" onclick="resetTimer()">I AM OKAY</button>
+            <button class="btn btn-sos" onclick="triggerEmergency()">I NEED HELP</button>
+        </div>
+
+        <p class="hint-text">
+           <h3>Timer resets automatically when you move or touch the screen.</h3> 
+        </p>
+    </main>
+
+    <section id="page-dashboard" class="container hidden">
+        <div class="dashboard-header">
+            <h2>Caregiver Dashboard</h2>
+            <p>Patient Status: 
+                <span id="dash-status-label">Normal</span>
+            </p>
+        </div>
+
+        <div class="info-grid">
+            <div class="card med-info">
+                <h3> Medical ID</h3>
+                <p><strong>Name:</strong> Narayanaswamy</p>
+                <p><strong>Conditions:</strong> High Blood Pressure</p>
+                <p><strong>Allergies:</strong> High-sodium foods</p>
+            </div>
+
+            <div class="card activity-logs">
+                <h3> Recent Activity</h3>
+                <ul id="log-list">
+                    <li>System initialized...</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

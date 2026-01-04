@@ -1,0 +1,123 @@
+:root {
+    --primary-green: #27ae60;
+    --emergency-red: #c0392b;
+    --dark-blue: #2c3137;
+    --bg-gray: #f4f7f6;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg-gray);
+    margin: 0;
+    color: var(--dark-blue);
+}
+
+
+.navbar {
+    background: var(--dark-blue);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.nav-links button {
+    background: rgba(176, 114, 114, 0.1);
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.hidden { display: none; }
+
+
+.status-card {
+    padding: 50px 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    transition: all 0.4s ease;
+}
+
+.safe { border: 10px solid var(--primary-green); background: #f0fff4; }
+
+.emergency { 
+    border: 10px solid var(--emergency-red); 
+    background: #fff5f5; 
+    animation: pulse-red 1.5s infinite;
+}
+
+
+.status-critical {
+    color: var(--emergency-red);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@keyframes pulse-red {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+#timer {
+    font-size: 6rem;
+    font-weight: 900;
+    margin: 15px 0;
+}
+
+
+.btn {
+    width: 100%;
+    padding: 35px;
+    font-size: 2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.btn-ok { background: var(--primary-green); color: white; }
+.btn-sos { background: var(--emergency-red); color: white; }
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+#log-list {
+    list-style: none;
+    padding: 0;
+    font-size: 0.85rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#log-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
